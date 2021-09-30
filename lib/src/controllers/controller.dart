@@ -24,7 +24,7 @@ class CustomImageCropController {
 }
 
 mixin CustomImageCropListener {
-  CropImageData data = CropImageData(scale: 1);
+  CropImageData data = CropImageData(scale: .02);
 
   void addTransition(CropImageData transition);
 

@@ -2,15 +2,14 @@ import 'dart:async';
 import 'dart:math';
 import 'dart:ui' as ui;
 
+import 'package:custom_image_crop/src/clippers/inverted_clipper.dart';
+import 'package:custom_image_crop/src/controllers/controller.dart';
+import 'package:custom_image_crop/src/models/model.dart';
+import 'package:custom_image_crop/src/painters/dotted_path_painter.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gesture_x_detector/gesture_x_detector.dart';
 import 'package:vector_math/vector_math_64.dart' as vector_math;
-
-import 'package:custom_image_crop/src/controllers/controller.dart';
-import 'package:custom_image_crop/src/painters/dotted_path_painter.dart';
-import 'package:custom_image_crop/src/clippers/inverted_clipper.dart';
-import 'package:custom_image_crop/src/models/model.dart';
 
 class CustomImageCrop extends StatefulWidget {
   final ImageProvider image;
@@ -109,10 +108,20 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
       builder: (context, constraints) {
         width = constraints.maxWidth;
         height = constraints.maxHeight;
+        print('width = ' + width.toString());
+        print('height = ' + height.toString());
+        print('crop percentage is ' + widget.cropPercentage.toString());
+        // we want to leave this at min
         final cropWidth = min(width, height) * widget.cropPercentage;
-        final defaultScale = min(image.width, image.height) / cropWidth;
+        print('therefore, cropWidth is ' + cropWidth.toString());
+        print('image width is ' + image.width.toString() + 'and image height is ' + image.height.toString());
+        final defaultScale = ((image.width + image.height) / 2) / cropWidth;
+        print('also therefore, defaultScale is ' + defaultScale.toString());
+
         final scale = data.scale * defaultScale;
+        print('once scale adjustment default applied, scale is ' + scale.toString());
         path = _getPath(cropWidth, width, height);
+
         return XGestureDetector(
           onMoveStart: onMoveStart,
           onMoveUpdate: onMoveUpdate,
