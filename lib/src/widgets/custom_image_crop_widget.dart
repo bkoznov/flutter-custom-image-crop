@@ -252,6 +252,8 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
       // that with the crop path that the resulting path
       // overlap the hole (crop). So we check if all pixels
       // from the crop contain pixels from the original image
+
+//      consider setting scale back to 1 and jjust adjsusitng how the controller works (i e put / 10 in there)
       data.scale = data.scale.clamp(0.1, 10.0);
     });
   }
