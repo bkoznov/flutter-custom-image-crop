@@ -272,7 +272,7 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
       // from the crop contain pixels from the original image
 
 //      consider setting scale back to 1 and jjust adjsusitng how the controller works (i e put / 10 in there)
-      data.scale = data.scale.clamp(0.1, 10.0);
+      data.scale = data.scale.clamp(0.01, 10.0);
     });
   }
 
@@ -281,7 +281,7 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
     setState(() {
       data = newData;
       // The same check should happen (once available) as in addTransition
-      data.scale = data.scale.clamp(0.1, 10.0);
+      data.scale = data.scale.clamp(0.01, 10.0);
     });
   }
 }
