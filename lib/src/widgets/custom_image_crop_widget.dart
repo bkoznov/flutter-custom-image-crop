@@ -243,7 +243,7 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
       // that with the crop path that the resulting path
       // overlap the hole (crop). So we check if all pixels
       // from the crop contain pixels from the original image
-      data.scale = data.scale.clamp(0.01, 10.0);
+      data.scale = data.scale.clamp(0.001, 1.0);
     });
   }
 
@@ -252,7 +252,7 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
     setState(() {
       data = newData;
       // The same check should happen (once available) as in addTransition
-      data.scale = data.scale.clamp(0.01, 10.0);
+      data.scale = data.scale.clamp(0.001, 1.0);
     });
   }
 }
