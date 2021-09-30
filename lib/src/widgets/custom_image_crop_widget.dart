@@ -115,7 +115,7 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
         final cropWidth = min(width, height) * widget.cropPercentage;
         print('therefore, cropWidth is ' + cropWidth.toString());
         print('image width is ' + image.width.toString() + 'and image height is ' + image.height.toString());
-        final defaultScale = ((image.width + image.height) / 2) / cropWidth;
+        final defaultScale = (((image.width + image.height) / 2) / cropWidth ) / 50;
         print('also therefore, defaultScale is ' + defaultScale.toString());
 
         final scale = data.scale * defaultScale;
