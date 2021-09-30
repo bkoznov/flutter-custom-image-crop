@@ -208,10 +208,28 @@ class _CustomImageCropState extends State<CustomImageCrop> with CustomImageCropL
     if (imageAsUIImage == null) {
       return null;
     }
+
+    //         width = constraints.maxWidth;
+    //         height = constraints.maxHeight;
+    //         print('width = ' + width.toString());
+    //         print('height = ' + height.toString());
+    //         print('crop percentage is ' + widget.cropPercentage.toString());
+    //         // we want to leave this at min
+    //         final cropWidth = min(width, height) * widget.cropPercentage;
+    //         print('therefore, cropWidth is ' + cropWidth.toString());
+    //         print('image width is ' + image.width.toString() + 'and image height is ' + image.height.toString());
+    //         final defaultScale = (((image.width + image.height) / 2) / cropWidth ) / 50;
+    //         print('also therefore, defaultScale is ' + defaultScale.toString());
+    //
+    //         final scale = data.scale * defaultScale;
+    //         print('once scale adjustment default applied, scale is ' + scale.toString());
+    //         path = _getPath(cropWidth, width, height);
     final cropWidth = min(width, height) * widget.cropPercentage;
     final pictureRecorder = ui.PictureRecorder();
     final canvas = Canvas(pictureRecorder);
-    final defaultScale = min(imageAsUIImage!.width, imageAsUIImage!.height) / cropWidth;
+    // this still probably doesn't account for future scaling!!
+    final defaultScale =(((imageAsUIImage!.width + imageAsUIImage!.height) / 2) / cropWidth ) / 50;
+        // min(imageAsUIImage!.width, imageAsUIImage!.height) / cropWidth;
     final scale = data.scale * defaultScale;
     final clipPath = Path.from(_getPath(cropWidth, cropWidth, cropWidth));
     final matrix4Image = Matrix4.diagonal3(vector_math.Vector3(1, 1, 0))
